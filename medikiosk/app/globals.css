@@ -1,0 +1,428 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --foreground: #0F172A;
+    --card: #ffffff;
+    --border: #E2E8F0;
+    --muted: #64748B;
+    --accent: #1E3A8A;
+    --accent-hover: #172554;
+  }
+
+  .dark {
+    --background: #0B1120;
+    --foreground: #F8FAFC;
+    --card: #0F172A;
+    --border: #1E293B;
+    --muted: #94A3B8;
+    --accent: #3B82F6;
+    --accent-hover: #2563EB;
+    color-scheme: dark;
+  }
+
+  html {
+    font-size: var(--app-base-font-size, 18px);
+  }
+
+  @media (min-width: 1440px) {
+    html {
+      font-size: var(--app-base-font-size, 19px);
+    }
+  }
+
+  /* Micro-text scaled using rem so it scales with global text size zoom */
+  [class*="text-[8px]"] {
+    font-size: 0.65rem !important;
+  }
+
+  [class*="text-[9px]"] {
+    font-size: 0.72rem !important;
+  }
+
+  [class*="text-[10px]"] {
+    font-size: 0.78rem !important;
+  }
+
+  [class*="text-[11px]"] {
+    font-size: 0.84rem !important;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Background mesh gradients */
+.clinical-mesh {
+  background: radial-gradient(circle at 10% 10%, rgba(30, 58, 138, 0.04) 0%, transparent 40%),
+              radial-gradient(circle at 90% 90%, rgba(30, 58, 138, 0.03) 0%, transparent 40%),
+              #F8FAFC;
+}
+
+.dark .clinical-mesh {
+  background: radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 45%),
+              radial-gradient(circle at 90% 90%, rgba(30, 58, 138, 0.06) 0%, transparent 45%),
+              #0B1120;
+}
+
+/* Premium Card & Surface Shadows */
+.card-elevated {
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+}
+
+.dark .card-elevated {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+.card-subtle {
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.03), 0 2px 6px 0 rgba(15, 23, 42, 0.03);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1E293B;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ========================================================
+   WAITING ROOM RIGHT-SIDE ENHANCED SCROLLBAR
+   ======================================================== */
+.waiting-room-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #2563EB rgba(226, 232, 240, 0.7);
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+}
+
+.waiting-room-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.waiting-room-scroll::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.6);
+  border-radius: 9999px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.waiting-room-scroll::-webkit-scrollbar-thumb {
+  background: #2563EB;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.waiting-room-scroll::-webkit-scrollbar-thumb:hover {
+  background: #1D4ED8;
+}
+
+.dark .waiting-room-scroll {
+  scrollbar-color: #3B82F6 rgba(15, 23, 42, 0.8);
+}
+
+.dark .waiting-room-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.dark .waiting-room-scroll::-webkit-scrollbar-thumb {
+  background: #3B82F6;
+  border: 2px solid rgba(11, 21, 40, 0.8);
+}
+
+.dark .waiting-room-scroll::-webkit-scrollbar-thumb:hover {
+  background: #60A5FA;
+}
+
+/* ========================================================
+   SIDEBAR: FIXED TEXT SIZE (IMMUNE TO ROOT FONT-SIZE ZOOM)
+   Layout width scales with text size option, but text stays crisp & fixed
+   ======================================================== */
+.sidebar-fixed-text {
+  font-size: 15px !important;
+}
+
+.sidebar-fixed-text .text-xs {
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+.sidebar-fixed-text .text-sm {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.sidebar-fixed-text .text-base {
+  font-size: 16px !important;
+  line-height: 22px !important;
+}
+
+.sidebar-fixed-text .text-lg {
+  font-size: 18px !important;
+  line-height: 24px !important;
+}
+
+.sidebar-fixed-text .text-\[9px\] {
+  font-size: 9px !important;
+  line-height: 12px !important;
+}
+
+.sidebar-fixed-text .text-\[10px\] {
+  font-size: 10px !important;
+  line-height: 14px !important;
+}
+
+/* ========================================================
+   DARK THEME COMPREHENSIVE UTILITIES
+   ======================================================== */
+.dark body,
+.dark main {
+  background-color: #0B1120 !important;
+  color: #F8FAFC !important;
+}
+
+.dark .bg-white {
+  background-color: #0F172A !important;
+}
+
+.dark .bg-\[\#EFF6FF\] {
+  background-color: #1E293B !important;
+}
+
+.dark .text-\[\#0F172A\] {
+  color: #F8FAFC !important;
+}
+
+.dark .text-\[\#64748B\] {
+  color: #94A3B8 !important;
+}
+
+.dark .border-\[\#E2E8F0\],
+.dark .border-\[\#E2E8F0\]\/80,
+.dark .border-\[\#E2E8F0\]\/70,
+.dark .border-\[\#E2E8F0\]\/60,
+.dark .border-\[\#E2E8F0\]\/50 {
+  border-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+.dark .bg-slate-50,
+.dark .bg-slate-50\/80,
+.dark .bg-slate-100 {
+  background-color: #1E293B !important;
+}
+
+.dark .bg-slate-50\/50 {
+  background-color: #131E33 !important;
+}
+
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover {
+  background-color: #1E293B !important;
+}
+
+.dark .hover\:bg-\[\#EFF6FF\]:hover {
+  background-color: #1E293B !important;
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="tel"],
+.dark input[type="password"],
+.dark input[type="search"],
+.dark select,
+.dark textarea {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+}
+
+.dark input:disabled,
+.dark select:disabled,
+.dark textarea:disabled {
+  background-color: #0B1120 !important;
+  color: #64748B !important;
+  border-color: #1E293B !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+.dark tr:hover td {
+  background-color: #1E293B !important;
+}
+
+.dark .divide-\[\#E2E8F0\]\/50 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(30, 41, 59, 0.6) !important;
+}
+
+/* ========================================================
+   DENSITY CONTROL UTILITIES
+   ======================================================== */
+html {
+  transition: font-size 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. Compact Density (84% root font size + tighter paddings) */
+html[data-density="compact"],
+body[data-density="compact"] {
+  font-size: 13.5px !important;
+}
+
+[data-density="compact"] td,
+[data-density="compact"] th {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+[data-density="compact"] .py-3,
+[data-density="compact"] .py-3\.5 {
+  padding-top: 0.45rem !important;
+  padding-bottom: 0.45rem !important;
+}
+
+[data-density="compact"] .py-4 {
+  padding-top: 0.65rem !important;
+  padding-bottom: 0.65rem !important;
+}
+
+[data-density="compact"] .px-4 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+[data-density="compact"] .p-4 {
+  padding: 0.75rem !important;
+}
+
+[data-density="compact"] .p-6 {
+  padding: 1rem !important;
+}
+
+[data-density="compact"] .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.6rem !important;
+}
+
+[data-density="compact"] .space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.75rem !important;
+}
+
+[data-density="compact"] .space-y-7 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem !important;
+}
+
+[data-density="compact"] .gap-3 {
+  gap: 0.5rem !important;
+}
+
+[data-density="compact"] .gap-4 {
+  gap: 0.65rem !important;
+}
+
+[data-density="compact"] input,
+[data-density="compact"] select,
+[data-density="compact"] textarea {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+  font-size: 0.8125rem !important;
+}
+
+/* 2. Comfortable Density (Standard 16px root font size) */
+html[data-density="comfortable"],
+body[data-density="comfortable"] {
+  font-size: 16px !important;
+}
+
+/* 3. Spacious Density (112.5% root font size + relaxed paddings) */
+html[data-density="spacious"],
+body[data-density="spacious"] {
+  font-size: 18px !important;
+}
+
+[data-density="spacious"] td,
+[data-density="spacious"] th {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+[data-density="spacious"] .py-3,
+[data-density="spacious"] .py-3\.5 {
+  padding-top: 1.15rem !important;
+  padding-bottom: 1.15rem !important;
+}
+
+[data-density="spacious"] .py-4 {
+  padding-top: 1.35rem !important;
+  padding-bottom: 1.35rem !important;
+}
+
+[data-density="spacious"] .px-4 {
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+}
+
+[data-density="spacious"] .p-4 {
+  padding: 1.35rem !important;
+}
+
+[data-density="spacious"] .p-6 {
+  padding: 1.75rem !important;
+}
+
+[data-density="spacious"] .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.35rem !important;
+}
+
+[data-density="spacious"] .space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.65rem !important;
+}
+
+[data-density="spacious"] .space-y-7 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 2.25rem !important;
+}
+
+[data-density="spacious"] .gap-3 {
+  gap: 1rem !important;
+}
+
+[data-density="spacious"] .gap-4 {
+  gap: 1.35rem !important;
+}
+
+[data-density="spacious"] input,
+[data-density="spacious"] select,
+[data-density="spacious"] textarea {
+  padding-top: 0.65rem !important;
+  padding-bottom: 0.65rem !important;
+}
