@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
 
   React.useEffect(() => {
     if (isInitialized && isAuthenticated) {
-      router.replace('/');
+      router.replace('/waiting');
     }
   }, [isAuthenticated, isInitialized, router]);
 
@@ -64,9 +64,9 @@ export default function AdminLoginPage() {
       const success = await login(email, password, role);
       if (success) {
         toast.success(`Welcome back, ${role === 'Clinical Administrator' ? 'Administrator' : 'Doctor'}!`, {
-          description: 'Session verified. Launching consultation workstation...',
+          description: 'Session verified. Opening live waiting room...',
         });
-        router.push('/');
+        router.push('/waiting');
       } else {
         toast.error('Authentication failed. Please check your credentials.');
       }
@@ -106,9 +106,9 @@ export default function AdminLoginPage() {
       const success = await signup(fullName, email, password, clinicName, role);
       if (success) {
         toast.success(`Account created successfully! Welcome, ${fullName}.`, {
-          description: 'Authorized clinical profile initialized. Navigating to dashboard...',
+          description: 'Authorized clinical profile initialized. Opening live waiting room...',
         });
-        router.push('/');
+        router.push('/waiting');
       } else {
         toast.error('Registration failed. An account with this email may already exist.');
       }
